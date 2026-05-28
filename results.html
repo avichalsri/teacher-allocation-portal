@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="rp_title">Check Result</title>
+  <link rel="icon" href="assets/bihar-emblem.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <img class="emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
+      <div class="header-titles">
+        <span class="h-main" data-i18n="app_title">Smart Teacher Allocation</span>
+        <span class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</span>
+      </div>
+      <div class="header-spacer"></div>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+          <button type="button" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
+      <a href="results.html" data-nav="results" data-i18n="nav_results">Check Result</a>
+      <a href="admin.html" data-nav="admin" data-i18n="nav_admin">Admin</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <h1 class="page-title" data-i18n="rp_title"></h1>
+    <p class="page-lead" data-i18n="rp_lead"></p>
+
+    <div id="setup-warn"></div>
+
+    <div id="not-published" class="card hidden">
+      <div class="msg warn" style="margin:0">
+        <strong data-i18n="rp_not_published_title"></strong>
+        <p data-i18n="rp_not_published_body" style="margin:8px 0 0"></p>
+      </div>
+    </div>
+
+    <section id="lookup" class="card hidden" style="max-width:520px">
+      <div class="field">
+        <label for="r-name" data-i18n="rp_select_name"></label>
+        <select id="r-name"></select>
+      </div>
+      <div id="r-msg" class="msg error hidden"></div>
+      <button id="btn-check" class="btn" type="button" data-i18n="rp_check"></button>
+    </section>
+
+    <section id="result-card" class="card hidden">
+      <h2 data-i18n="rp_your_result"></h2>
+      <div id="result-body"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div data-i18n="footer_note"></div>
+      <div class="inline-note" data-i18n="footer_disclaimer"></div>
+      <div class="inline-note">© <span id="footer-year"></span> · Government of Bihar</div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/results.js"></script>
+</body>
+</html>

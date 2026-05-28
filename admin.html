@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="nav_admin">Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/bihar-emblem.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <img class="emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
+      <div class="header-titles">
+        <span class="h-main" data-i18n="app_title">Smart Teacher Allocation</span>
+        <span class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</span>
+      </div>
+      <div class="header-spacer"></div>
+      <div class="header-actions">
+        <span id="admin-email" class="inline-note" style="color:#cfe0f0"></span>
+        <button id="btn-logout" class="btn secondary small hidden" type="button" data-i18n="ad_logout"></button>
+        <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+          <button type="button" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
+      <a href="results.html" data-nav="results" data-i18n="nav_results">Check Result</a>
+      <a href="admin.html" data-nav="admin" data-i18n="nav_admin">Admin</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div id="setup-warn"></div>
+
+    <!-- ============ LOGIN ============ -->
+    <section id="login-view" class="card hidden" style="max-width:440px;margin:40px auto">
+      <h1 class="page-title" data-i18n="ad_login_title"></h1>
+      <p class="inline-note" data-i18n="ad_login_lead"></p>
+      <div class="field">
+        <label for="a-email" data-i18n="ad_email"></label>
+        <input id="a-email" type="email" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="a-pass" data-i18n="ad_password"></label>
+        <input id="a-pass" type="password" autocomplete="current-password" />
+      </div>
+      <div id="login-msg" class="msg error hidden"></div>
+      <button id="btn-login" class="btn" type="button" data-i18n="ad_login"></button>
+    </section>
+
+    <!-- ============ DASHBOARD ============ -->
+    <section id="dash-view" class="hidden">
+      <h1 class="page-title" data-i18n="ad_dashboard"></h1>
+
+      <div class="tabs" role="tablist">
+        <button role="tab" data-tab="overview"    aria-selected="true"  data-i18n="ad_tab_overview"></button>
+        <button role="tab" data-tab="panchayats"  aria-selected="false" data-i18n="ad_tab_panchayats"></button>
+        <button role="tab" data-tab="teachers"    aria-selected="false" data-i18n="ad_tab_teachers"></button>
+        <button role="tab" data-tab="submissions" aria-selected="false" data-i18n="ad_tab_submissions"></button>
+        <button role="tab" data-tab="allocation"  aria-selected="false" data-i18n="ad_tab_allocation"></button>
+      </div>
+
+      <!-- ---- Overview ---- -->
+      <div class="tab-panel" data-panel="overview">
+        <div class="card">
+          <h2 data-i18n="ad_tab_overview"></h2>
+          <div class="grid-2">
+            <div>
+              <label data-i18n="ad_status"></label>
+              <div><span id="ov-sub-badge" class="badge"></span></div>
+              <div class="btn-row" style="margin-top:12px">
+                <button id="btn-open-subs" class="btn success small" type="button" data-i18n="ad_open_subs"></button>
+                <button id="btn-close-subs" class="btn danger small" type="button" data-i18n="ad_close_subs"></button>
+              </div>
+            </div>
+            <div>
+              <label data-i18n="ad_results_status"></label>
+              <div><span id="ov-res-badge" class="badge"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="stats">
+            <div class="stat"><div class="num" id="st-panchayats">–</div><div class="lbl" data-i18n="ad_stat_panchayats"></div></div>
+            <div class="stat"><div class="num" id="st-seats">–</div><div class="lbl" data-i18n="ad_stat_seats"></div></div>
+            <div class="stat"><div class="num" id="st-teachers">–</div><div class="lbl" data-i18n="ad_stat_teachers"></div></div>
+            <div class="stat"><div class="num" id="st-submitted">–</div><div class="lbl" data-i18n="ad_stat_submitted"></div></div>
+            <div class="stat"><div class="num" id="st-allocated">–</div><div class="lbl" data-i18n="ad_stat_allocated"></div></div>
+            <div class="stat"><div class="num" id="st-unallocated">–</div><div class="lbl" data-i18n="ad_stat_unallocated"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- Panchayats ---- -->
+      <div class="tab-panel" data-panel="panchayats" hidden>
+        <div class="card">
+          <h2 data-i18n="ad_p_title"></h2>
+          <p class="inline-note" data-i18n="ad_p_lead"></p>
+          <div class="grid-2">
+            <div class="field"><label data-i18n="ad_p_name_en"></label><input id="p-name-en" type="text" /></div>
+            <div class="field"><label data-i18n="ad_p_name_hi"></label><input id="p-name-hi" type="text" /></div>
+            <div class="field"><label data-i18n="ad_p_block"></label><input id="p-block" type="text" list="blocks" /></div>
+            <div class="field"><label data-i18n="ad_p_capacity"></label><input id="p-cap" type="number" min="1" value="1" /></div>
+          </div>
+          <input type="hidden" id="p-edit-id" />
+          <div class="btn-row">
+            <button id="btn-p-add" class="btn" type="button" data-i18n="ad_p_add"></button>
+            <button id="btn-p-cancel" class="btn secondary hidden" type="button" data-i18n="cancel"></button>
+            <button id="btn-p-import" class="btn secondary" type="button" data-i18n="ad_p_import"></button>
+            <button id="btn-p-export" class="btn secondary" type="button" data-i18n="ad_p_export"></button>
+            <button id="btn-p-template" class="btn secondary small" type="button" data-i18n="ad_p_template"></button>
+            <input id="p-file" type="file" accept=".csv,text/csv" class="hidden" />
+          </div>
+          <p class="inline-note" data-i18n="ad_p_csv_help"></p>
+          <div id="p-msg" class="msg hidden"></div>
+        </div>
+        <div class="card">
+          <div class="table-wrap"><table class="data" id="p-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ---- Teachers ---- -->
+      <div class="tab-panel" data-panel="teachers" hidden>
+        <div class="card">
+          <h2 data-i18n="ad_t_title"></h2>
+          <p class="inline-note" data-i18n="ad_t_lead"></p>
+          <div class="grid-2">
+            <div class="field"><label data-i18n="ad_t_name_en"></label><input id="t-name-en" type="text" /></div>
+            <div class="field"><label data-i18n="ad_t_name_hi"></label><input id="t-name-hi" type="text" /></div>
+            <div class="field"><label data-i18n="ad_t_school"></label><input id="t-school" type="text" /></div>
+            <div class="field"><label data-i18n="ad_t_block"></label><input id="t-block" type="text" list="blocks" /></div>
+            <div class="field"><label data-i18n="ad_t_score"></label><input id="t-score" type="number" step="0.01" />
+              <div class="hint" data-i18n="ad_t_higher_better"></div></div>
+          </div>
+          <input type="hidden" id="t-edit-id" />
+          <div class="btn-row">
+            <button id="btn-t-add" class="btn" type="button" data-i18n="ad_t_add"></button>
+            <button id="btn-t-cancel" class="btn secondary hidden" type="button" data-i18n="cancel"></button>
+            <button id="btn-t-import" class="btn secondary" type="button" data-i18n="ad_t_import"></button>
+            <button id="btn-t-export" class="btn secondary small" type="button" data-i18n="ad_t_export"></button>
+            <button id="btn-t-template" class="btn secondary small" type="button" data-i18n="ad_t_template"></button>
+            <input id="t-file" type="file" accept=".csv,text/csv" class="hidden" />
+          </div>
+          <p class="inline-note" data-i18n="ad_t_csv_help"></p>
+          <div id="t-msg" class="msg hidden"></div>
+        </div>
+        <div class="card">
+          <div class="table-wrap"><table class="data" id="t-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ---- Submissions ---- -->
+      <div class="tab-panel" data-panel="submissions" hidden>
+        <div class="card">
+          <h2 data-i18n="ad_s_title"></h2>
+          <p class="inline-note" data-i18n="ad_s_lead"></p>
+          <div class="table-wrap"><table class="data" id="s-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ---- Allocation ---- -->
+      <div class="tab-panel" data-panel="allocation" hidden>
+        <div class="card">
+          <h2 data-i18n="ad_a_title"></h2>
+          <p class="inline-note" data-i18n="ad_a_lead"></p>
+          <div class="msg warn" data-i18n="ad_a_need_close"></div>
+          <div class="btn-row">
+            <button id="btn-run" class="btn" type="button" data-i18n="ad_a_run"></button>
+            <button id="btn-rerun" class="btn secondary hidden" type="button" data-i18n="ad_a_rerun"></button>
+            <button id="btn-publish" class="btn success hidden" type="button" data-i18n="ad_a_publish"></button>
+            <button id="btn-unpublish" class="btn danger hidden" type="button" data-i18n="ad_a_unpublish"></button>
+            <button id="btn-export-results" class="btn secondary hidden" type="button" data-i18n="ad_a_export"></button>
+          </div>
+          <p class="inline-note" id="a-meta"></p>
+          <div id="a-msg" class="msg hidden"></div>
+        </div>
+
+        <div class="card" id="a-results-card" style="display:none">
+          <h3 data-i18n="ad_a_results"></h3>
+          <div class="table-wrap"><table class="data" id="a-table"></table></div>
+        </div>
+
+        <div class="card" id="a-unalloc-card" style="display:none">
+          <h3 data-i18n="ad_a_unallocated_list"></h3>
+          <div class="table-wrap"><table class="data" id="a-unalloc-table"></table></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div data-i18n="footer_note"></div>
+      <div class="inline-note">© <span id="footer-year"></span> · Government of Bihar</div>
+    </div>
+  </footer>
+
+  <datalist id="blocks">
+    <option value="Kahra"></option>
+    <option value="Sour Bazar"></option>
+    <option value="Sonbarsa"></option>
+    <option value="Sattar Kataiya"></option>
+    <option value="Nauhatta"></option>
+    <option value="Mahishi"></option>
+    <option value="Patarghat"></option>
+    <option value="Simri Bakhtiyarpur"></option>
+    <option value="Salkhua"></option>
+    <option value="Banma"></option>
+  </datalist>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

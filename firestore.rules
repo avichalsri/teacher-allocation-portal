@@ -1,0 +1,88 @@
+rules_version = '2';
+
+// ============================================================
+//  Firestore Security Rules — Smart Teacher Allocation
+//  Paste into Firebase Console → Firestore Database → Rules → Publish.
+//
+//  Model (self-registration by name + mobile):
+//   * PUBLIC site can:
+//       - read panchayats, the teacher roster (names only), config flags
+//       - read allocation results ONLY after they are published
+//       - CREATE its own submission + mobile "claim" (never update them),
+//         only while the submission window is open. Because only CREATE is
+//         allowed, a teacher cannot submit twice and a mobile number cannot
+//         be reused — the second attempt fails.
+//   * ADMIN (any signed-in user — create ONLY the one admin account) can
+//     read/write everything, including DELETING a registration so a teacher
+//     can submit again.
+//   * Performance scores live in `teachers_private` and are NEVER public.
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null;
+    }
+    function submissionsOpen() {
+      return exists(/databases/$(database)/documents/config/app) &&
+             get(/databases/$(database)/documents/config/app).data.submissionsOpen == true;
+    }
+    function resultsPublished() {
+      return exists(/databases/$(database)/documents/config/app) &&
+             get(/databases/$(database)/documents/config/app).data.resultsPublished == true;
+    }
+
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /panchayats/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Roster = public names only (no scores).
+    match /roster/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Performance scores — admin only, never public.
+    match /teachers_private/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    // Mobile-uniqueness claims. Public create-only; admin can delete.
+    match /claims/{mobile} {
+      allow read: if true;
+      allow create: if submissionsOpen()
+        && request.resource.data.rosterId is string;
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Submissions — admin reads; public create-only (one per teacher).
+    match /submissions/{rosterId} {
+      allow read: if isAdmin();
+      allow create: if submissionsOpen()
+        && request.resource.data.rosterId == rosterId
+        && exists(/databases/$(database)/documents/roster/$(rosterId))
+        && request.resource.data.mobile is string
+        && request.resource.data.preferences is list
+        && request.resource.data.preferences.size() == 5;
+      allow update, delete: if isAdmin();
+    }
+
+    // Results — public only once published.
+    match /results/{rosterId} {
+      allow read: if resultsPublished() || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

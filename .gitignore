@@ -1,0 +1,13 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Local Firebase tooling (not needed for this static deploy)
+.firebase/
+firebase-debug.log
