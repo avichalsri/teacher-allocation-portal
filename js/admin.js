@@ -362,7 +362,9 @@ function renderRegistrationTable() {
           const p = pmap[pid];
           return `${i + 1}. ${escapeHtml(p ? localName(p.nameEn, p.nameHi) : pid)}`;
         }).join("<br>");
-        const present = [s.presentPanchayat, s.presentBlock].filter(Boolean).join(", ");
+        const pp = pmap[s.presentPanchayat];
+        const presentName = pp ? localName(pp.nameEn, pp.nameHi) : (s.presentPanchayat || "");
+        const present = [presentName, s.presentBlock].filter(Boolean).join(", ");
         return `<tr>
           <td>${escapeHtml(localName(s.nameEn, s.nameHi))}</td>
           <td>${escapeHtml(s.post || "—")}</td>

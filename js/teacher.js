@@ -122,7 +122,7 @@ function buildPresentPanchayatSelect(block) {
   els.presentPanchayat.innerHTML = "";
   els.presentPanchayat.appendChild(makeOption("", t("tp_select_panchayat")));
   for (const p of panchayats.filter((x) => !block || x.block === block)) {
-    els.presentPanchayat.appendChild(makeOption(p.nameEn || p.nameHi, localName(p.nameEn, p.nameHi)));
+    els.presentPanchayat.appendChild(makeOption(p.id, localName(p.nameEn, p.nameHi)));
   }
   if (keep) els.presentPanchayat.value = keep;
 }
@@ -155,18 +155,45 @@ function buildPrefRows(preselected = []) {
     const sel = document.createElement("select");
     sel.id = `pref-${i}`;
     sel.setAttribute("aria-label", `${t("tp_pref")} ${i + 1}`);
-    sel.appendChild(makeOption("", t("tp_select_panchayat")));
-    appendPanchayatOptions(sel);
-    if (preselected[i]) sel.value = preselected[i];
+    sel.addEventListener("change", () => refreshPrefOptions());
     li.appendChild(rank);
     li.appendChild(sel);
     els.prefList.appendChild(li);
   }
+  refreshPrefOptions(preselected);
 }
 
-function appendPanchayatOptions(sel) {
+/**
+ * Populate each preference dropdown with panchayats, EXCLUDING:
+ *   - the present panchayat
+ *   - any panchayat already chosen in the OTHER preference dropdowns
+ * Each select's own selection is preserved.
+ */
+function refreshPrefOptions(preselectedArr) {
+  const selects = [];
+  for (let i = 0; i < NUM_PREFS; i++) selects.push(document.getElementById(`pref-${i}`));
+  const useArr = Array.isArray(preselectedArr) ? preselectedArr : null;
+  const currentValues = selects.map((s, i) => (useArr ? (useArr[i] || "") : s.value));
+  const present = els.presentPanchayat.value || "";
+
+  selects.forEach((sel, i) => {
+    const own = currentValues[i];
+    const exclude = new Set();
+    if (present) exclude.add(present);
+    currentValues.forEach((v, j) => { if (j !== i && v) exclude.add(v); });
+
+    sel.innerHTML = "";
+    sel.appendChild(makeOption("", t("tp_select_panchayat")));
+    appendPanchayatOptions(sel, exclude);
+    if (own && [...sel.options].some((o) => o.value === own)) sel.value = own;
+    else sel.value = "";
+  });
+}
+
+function appendPanchayatOptions(sel, excludeSet) {
   const byBlock = new Map();
   for (const p of panchayats) {
+    if (excludeSet && excludeSet.has(p.id)) continue;
     const b = p.block || "—";
     if (!byBlock.has(b)) byBlock.set(b, []);
     byBlock.get(b).push(p);

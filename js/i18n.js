@@ -20,7 +20,7 @@ export const STRINGS = {
     nav_admin: "Admin",
     home_hero_title: "Welcome",
     home_hero_lead: "An online portal for transparent, merit-based allocation of teachers to panchayats across Saharsa District — Education Department, Government of Bihar.",
-    dm_name: "Shri Dipesh Kumar",
+    dm_name: "Shri Deepesh Kumar",
     dm_role: "District Magistrate, Saharsa",
     landing_admin_pic_label: "Saharsa Administration",
     landing_btn_teacher: "Teacher Portal",
