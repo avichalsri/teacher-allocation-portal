@@ -11,73 +11,66 @@
 <body data-lang="en">
   <a class="skip-link" href="#main" data-i18n="nav_home">Skip to content</a>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <img class="emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
-      <div class="header-titles">
-        <span class="h-main" data-i18n="app_title">Teacher Allocation Portal</span>
-        <span class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</span>
-      </div>
-      <div class="header-spacer"></div>
-      <div class="header-actions">
-        <div class="lang-toggle" role="group" aria-label="Language / भाषा">
-          <button type="button" data-lang="en" aria-pressed="true">English</button>
-          <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+  <section class="landing-header">
+    <div class="landing-header-inner">
+      <a href="index.html" class="banner-brand" aria-label="Home">
+        <img class="landing-header-emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
+        <div class="landing-titles">
+          <h1 data-i18n="app_title">Teacher Allocation Portal</h1>
+          <p data-i18n="app_subtitle">Saharsa District, Government of Bihar</p>
+        </div>
+      </a>
+
+      <div class="landing-dm">
+        <div class="landing-dm-photo">
+          <img src="assets/dm-saharsa.jpg" alt="District Magistrate, Saharsa" onerror="this.style.display='none'" />
+        </div>
+        <div class="landing-dm-caption">
+          <strong data-i18n="dm_name">श्री दीपेश कुमार</strong>
+          <span data-i18n="dm_role">जिला अधिकारी, सहरसा</span>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <nav class="site-nav" aria-label="Primary">
-    <div class="nav-inner">
-      <a href="index.html"   data-nav="home"    data-i18n="nav_home">Home</a>
-      <a href="teacher.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
-      <a href="results.html" data-nav="results" data-i18n="nav_results">Check Result</a>
-      <a href="admin.html"   data-nav="admin"   data-i18n="nav_admin">Admin</a>
+  <div class="util-bar">
+    <div class="util-bar-inner">
+      <div class="util-bar-spacer"></div>
+      <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+      </div>
     </div>
-  </nav>
+  </div>
 
   <main id="main">
-    <!-- Welcome hero -->
-    <section class="home-hero" aria-labelledby="hero-heading">
-      <img class="home-hero-emblem" src="assets/bihar-emblem.png" alt="" />
-      <div class="home-hero-titles">
-        <h2 id="hero-heading" data-i18n="home_hero_title">Welcome</h2>
-        <div class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</div>
-        <p data-i18n="home_hero_lead"></p>
+    <section class="landing-body" aria-label="Quick actions">
+      <div class="landing-photo" data-label-key="landing_admin_pic_label" data-label="Saharsa Administration">
+        <img src="assets/saharsa-administration.jpeg" alt="Saharsa Administration" onerror="this.style.display='none'" />
       </div>
-    </section>
-
-    <!-- Action cards -->
-    <section class="home-actions" aria-label="Quick actions">
-      <a class="home-action-card" href="teacher.html">
-        <h3 data-i18n="home_cta_teacher_title"></h3>
-        <p data-i18n="home_cta_teacher_desc"></p>
-        <span class="home-action-btn" data-i18n="home_cta_teacher_btn"></span>
-      </a>
-      <a class="home-action-card green" href="results.html">
-        <h3 data-i18n="home_cta_result_title"></h3>
-        <p data-i18n="home_cta_result_desc"></p>
-        <span class="home-action-btn" data-i18n="home_cta_result_btn"></span>
-      </a>
-      <a class="home-action-card navy" href="admin.html">
-        <h3 data-i18n="home_cta_admin_title"></h3>
-        <p data-i18n="home_cta_admin_desc"></p>
-        <span class="home-action-btn" data-i18n="home_cta_admin_btn"></span>
-      </a>
-    </section>
-
-    <!-- District stats -->
-    <section class="home-stats" aria-label="District at a glance">
-      <div class="stat"><div class="num">1</div>   <div class="lbl" data-i18n="home_stat_districts"></div></div>
-      <div class="stat"><div class="num">10</div>  <div class="lbl" data-i18n="home_stat_blocks"></div></div>
-      <div class="stat"><div class="num">135</div> <div class="lbl" data-i18n="home_stat_panchayats"></div></div>
-    </section>
-
-    <!-- About -->
-    <section class="home-about">
-      <h3 data-i18n="home_about_title"></h3>
-      <p data-i18n="home_about_body"></p>
+      <div class="landing-actions">
+        <a class="action-btn" href="teacher.html">
+          <span class="action-content">
+            <span class="action-title" data-i18n="landing_btn_teacher">Teacher Portal</span>
+            <span class="action-desc"  data-i18n="landing_btn_teacher_desc">Submit your 5 ranked panchayat preferences</span>
+          </span>
+          <span class="action-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="action-btn green" href="results.html">
+          <span class="action-content">
+            <span class="action-title" data-i18n="landing_btn_result">Check Result</span>
+            <span class="action-desc"  data-i18n="landing_btn_result_desc">View your allocated panchayat once results are published</span>
+          </span>
+          <span class="action-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="action-btn navy" href="admin.html">
+          <span class="action-content">
+            <span class="action-title" data-i18n="landing_btn_admin">Admin Login</span>
+            <span class="action-desc"  data-i18n="landing_btn_admin_desc">District Education Office only</span>
+          </span>
+          <span class="action-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
     </section>
   </main>
 
