@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="tp_title">Teacher Portal</title>
+  <meta name="description" content="Teacher preference form — Teacher Allocation Portal, Saharsa District, Bihar" />
+  <link rel="icon" href="assets/bihar-emblem.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#main" data-i18n="nav_teacher">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <img class="emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
+      <div class="header-titles">
+        <span class="h-main" data-i18n="app_title">Teacher Allocation Portal</span>
+        <span class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</span>
+      </div>
+      <div class="header-spacer"></div>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+          <button type="button" data-lang="en" aria-pressed="true">English</button>
+          <button type="button" data-lang="hi" aria-pressed="false">हिंदी</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="index.html"   data-nav="home"    data-i18n="nav_home">Home</a>
+      <a href="teacher.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
+      <a href="results.html" data-nav="results" data-i18n="nav_results">Check Result</a>
+      <a href="admin.html"   data-nav="admin"   data-i18n="nav_admin">Admin</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <h1 class="page-title" data-i18n="tp_title">Teacher Preference Form</h1>
+    <p class="page-lead" data-i18n="tp_lead"></p>
+
+    <div id="setup-warn"></div>
+
+    <div id="published-banner" class="msg info hidden">
+      <span data-i18n="tp_results_published_note"></span>
+      <a href="results.html" data-i18n="tp_check_result_link"></a>
+    </div>
+
+    <div id="closed-banner" class="card hidden">
+      <div class="msg warn" style="margin:0">
+        <strong data-i18n="tp_closed_title"></strong>
+        <p data-i18n="tp_closed_body" style="margin:8px 0 0"></p>
+      </div>
+    </div>
+
+    <!-- Step 1 — details -->
+    <section id="step1" class="card hidden">
+      <h2 data-i18n="tp_step1"></h2>
+      <div class="field">
+        <label for="t-name" data-i18n="tp_select_name"></label>
+        <select id="t-name"></select>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="t-post" data-i18n="tp_post"></label>
+          <input id="t-post" type="text" data-i18n-placeholder="tp_post_ph" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="t-mobile" data-i18n="tp_mobile"></label>
+          <input id="t-mobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="off" />
+          <div class="hint" data-i18n="tp_mobile_hint"></div>
+          <div id="mobile-err" class="hint hidden" style="color:var(--danger)"></div>
+        </div>
+        <div class="field">
+          <label for="t-present-block" data-i18n="tp_present_block"></label>
+          <select id="t-present-block"></select>
+        </div>
+        <div class="field">
+          <label for="t-present-panchayat" data-i18n="tp_present_panchayat"></label>
+          <select id="t-present-panchayat"></select>
+        </div>
+      </div>
+      <div id="step1-msg" class="msg error hidden"></div>
+      <button id="btn-continue" class="btn" type="button" data-i18n="tp_continue"></button>
+    </section>
+
+    <!-- Step 2 — preferences -->
+    <section id="form-area" class="card hidden">
+      <h2 data-i18n="tp_step3"></h2>
+      <p class="inline-note" data-i18n="tp_pref_lead"></p>
+      <ul class="pref-list" id="pref-list"></ul>
+      <div id="submit-msg" class="msg hidden"></div>
+      <div class="btn-row">
+        <button id="btn-submit" class="btn success" type="button" data-i18n="tp_submit_prefs"></button>
+        <button id="btn-restart" class="btn secondary" type="button" data-i18n="tp_change_name"></button>
+      </div>
+    </section>
+
+    <!-- Success -->
+    <section id="success-view" class="card hidden" style="text-align:center">
+      <div style="font-size:48px;line-height:1;color:var(--green)">✓</div>
+      <h2 data-i18n="tp_submitted_ok" style="color:var(--green)"></h2>
+      <p class="inline-note" data-i18n="tp_submitted_sub"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div data-i18n="footer_note"></div>
+      <div class="inline-note" data-i18n="footer_disclaimer"></div>
+      <div class="inline-note">© <span id="footer-year"></span> · Government of Bihar</div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/teacher.js"></script>
+</body>
+</html>

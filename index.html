@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="tp_title">Teacher Portal</title>
-  <meta name="description" content="Teacher preference form — Smart Teacher Allocation, Saharsa District, Bihar" />
+  <title data-i18n="nav_home">Home</title>
+  <meta name="description" content="Teacher Allocation Portal — Saharsa District, Education Department, Government of Bihar." />
   <link rel="icon" href="assets/bihar-emblem.png" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-lang="en">
-  <a class="skip-link" href="#main" data-i18n="nav_teacher">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="nav_home">Skip to content</a>
 
   <header class="site-header">
     <div class="header-inner">
       <img class="emblem" src="assets/bihar-emblem.png" alt="Government of Bihar / बिहार सरकार" />
       <div class="header-titles">
-        <span class="h-main" data-i18n="app_title">Smart Teacher Allocation</span>
+        <span class="h-main" data-i18n="app_title">Teacher Allocation Portal</span>
         <span class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</span>
       </div>
       <div class="header-spacer"></div>
@@ -30,78 +30,54 @@
 
   <nav class="site-nav" aria-label="Primary">
     <div class="nav-inner">
-      <a href="index.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
+      <a href="index.html"   data-nav="home"    data-i18n="nav_home">Home</a>
+      <a href="teacher.html" data-nav="teacher" data-i18n="nav_teacher">Teacher Portal</a>
       <a href="results.html" data-nav="results" data-i18n="nav_results">Check Result</a>
-      <a href="admin.html" data-nav="admin" data-i18n="nav_admin">Admin</a>
+      <a href="admin.html"   data-nav="admin"   data-i18n="nav_admin">Admin</a>
     </div>
   </nav>
 
   <main id="main">
-    <h1 class="page-title" data-i18n="tp_title">Teacher Preference Form</h1>
-    <p class="page-lead" data-i18n="tp_lead"></p>
-
-    <div id="setup-warn"></div>
-
-    <div id="published-banner" class="msg info hidden">
-      <span data-i18n="tp_results_published_note"></span>
-      <a href="results.html" data-i18n="tp_check_result_link"></a>
-    </div>
-
-    <div id="closed-banner" class="card hidden">
-      <div class="msg warn" style="margin:0">
-        <strong data-i18n="tp_closed_title"></strong>
-        <p data-i18n="tp_closed_body" style="margin:8px 0 0"></p>
-      </div>
-    </div>
-
-    <!-- Step 1 — details -->
-    <section id="step1" class="card hidden">
-      <h2 data-i18n="tp_step1"></h2>
-      <div class="field">
-        <label for="t-name" data-i18n="tp_select_name"></label>
-        <select id="t-name"></select>
-      </div>
-      <div class="grid-2">
-        <div class="field">
-          <label for="t-post" data-i18n="tp_post"></label>
-          <input id="t-post" type="text" data-i18n-placeholder="tp_post_ph" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label for="t-mobile" data-i18n="tp_mobile"></label>
-          <input id="t-mobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="off" />
-          <div class="hint" data-i18n="tp_mobile_hint"></div>
-          <div id="mobile-err" class="hint hidden" style="color:var(--danger)"></div>
-        </div>
-        <div class="field">
-          <label for="t-present-block" data-i18n="tp_present_block"></label>
-          <select id="t-present-block"></select>
-        </div>
-        <div class="field">
-          <label for="t-present-panchayat" data-i18n="tp_present_panchayat"></label>
-          <select id="t-present-panchayat"></select>
-        </div>
-      </div>
-      <div id="step1-msg" class="msg error hidden"></div>
-      <button id="btn-continue" class="btn" type="button" data-i18n="tp_continue"></button>
-    </section>
-
-    <!-- Step 2 — preferences -->
-    <section id="form-area" class="card hidden">
-      <h2 data-i18n="tp_step3"></h2>
-      <p class="inline-note" data-i18n="tp_pref_lead"></p>
-      <ul class="pref-list" id="pref-list"></ul>
-      <div id="submit-msg" class="msg hidden"></div>
-      <div class="btn-row">
-        <button id="btn-submit" class="btn success" type="button" data-i18n="tp_submit_prefs"></button>
-        <button id="btn-restart" class="btn secondary" type="button" data-i18n="tp_change_name"></button>
+    <!-- Welcome hero -->
+    <section class="home-hero" aria-labelledby="hero-heading">
+      <img class="home-hero-emblem" src="assets/bihar-emblem.png" alt="" />
+      <div class="home-hero-titles">
+        <h2 id="hero-heading" data-i18n="home_hero_title">Welcome</h2>
+        <div class="h-sub" data-i18n="app_subtitle">Saharsa District, Government of Bihar</div>
+        <p data-i18n="home_hero_lead"></p>
       </div>
     </section>
 
-    <!-- Success -->
-    <section id="success-view" class="card hidden" style="text-align:center">
-      <div style="font-size:48px;line-height:1;color:var(--green)">✓</div>
-      <h2 data-i18n="tp_submitted_ok" style="color:var(--green)"></h2>
-      <p class="inline-note" data-i18n="tp_submitted_sub"></p>
+    <!-- Action cards -->
+    <section class="home-actions" aria-label="Quick actions">
+      <a class="home-action-card" href="teacher.html">
+        <h3 data-i18n="home_cta_teacher_title"></h3>
+        <p data-i18n="home_cta_teacher_desc"></p>
+        <span class="home-action-btn" data-i18n="home_cta_teacher_btn"></span>
+      </a>
+      <a class="home-action-card green" href="results.html">
+        <h3 data-i18n="home_cta_result_title"></h3>
+        <p data-i18n="home_cta_result_desc"></p>
+        <span class="home-action-btn" data-i18n="home_cta_result_btn"></span>
+      </a>
+      <a class="home-action-card navy" href="admin.html">
+        <h3 data-i18n="home_cta_admin_title"></h3>
+        <p data-i18n="home_cta_admin_desc"></p>
+        <span class="home-action-btn" data-i18n="home_cta_admin_btn"></span>
+      </a>
+    </section>
+
+    <!-- District stats -->
+    <section class="home-stats" aria-label="District at a glance">
+      <div class="stat"><div class="num">1</div>   <div class="lbl" data-i18n="home_stat_districts"></div></div>
+      <div class="stat"><div class="num">10</div>  <div class="lbl" data-i18n="home_stat_blocks"></div></div>
+      <div class="stat"><div class="num">135</div> <div class="lbl" data-i18n="home_stat_panchayats"></div></div>
+    </section>
+
+    <!-- About -->
+    <section class="home-about">
+      <h3 data-i18n="home_about_title"></h3>
+      <p data-i18n="home_about_body"></p>
     </section>
   </main>
 
@@ -113,6 +89,6 @@
     </div>
   </footer>
 
-  <script type="module" src="js/teacher.js"></script>
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>
