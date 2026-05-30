@@ -501,6 +501,8 @@ code.kbd { background: #eef1f5; border: 1px solid var(--border); border-radius: 
   font-size: 1.08rem;
   color: var(--navy-dark);
   letter-spacing: 0.01em;
+  text-transform: capitalize;   /* keep titles in Title Case even when Chrome
+                                   auto-translates the Hindi strings */
 }
 .action-btn .action-desc {
   font-size: 0.86rem;
